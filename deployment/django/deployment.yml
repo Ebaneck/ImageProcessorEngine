@@ -16,7 +16,7 @@ spec:
       containers:
         - name: backend
           imagePullPolicy: Always
-          image: claudeforlife/imageprocessor:v2
+          image: claudeforlife/imageprocessor:latest
           # command: ['python', 'manage.py', 'collectstatic']
           # livenessProbe:
           #   httpGet:
