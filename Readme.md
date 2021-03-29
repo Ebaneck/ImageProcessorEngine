@@ -143,3 +143,24 @@ Screenshots
 ===========
 
 ![View](screenshot/view.gif)
+
+Minikube cluster status
+=======================
+    (base) Claudes-MBP:image_processor ebaneck$ kubectl get pods -A
+    NAMESPACE        NAME                                   READY   STATUS      RESTARTS   AGE
+    imageprocessor   celery-beat-57f5f565-f2pbg             1/1     Running     0          101m
+    imageprocessor   celery-worker-76ddfd5fb7-qx9b5         1/1     Running     0          101m
+    imageprocessor   django-67cf68fd8c-2vftg                1/1     Running     0          3m38s
+    imageprocessor   django-db-import-phcxh                 0/1     Completed   0          11m
+    imageprocessor   django-migrations-622rz                0/1     Completed   0          100m
+    imageprocessor   postgres-deployment-7544cd96bd-j27q6   1/1     Running     0          101m
+    imageprocessor   redis-5b46dd97b5-rx8ch                 1/1     Running     0          101m
+    kube-system      coredns-74ff55c5b-k99p9                1/1     Running     0          108m
+    kube-system      etcd-minikube                          1/1     Running     0          108m
+    kube-system      kindnet-7tqn9                          1/1     Running     0          104m
+    kube-system      kube-apiserver-minikube                1/1     Running     0          108m
+    kube-system      kube-controller-manager-minikube       1/1     Running     0          108m
+    kube-system      kube-proxy-xgd5n                       1/1     Running     0          108m
+    kube-system      kube-scheduler-minikube                1/1     Running     0          108m
+    kube-system      storage-provisioner                    1/1     Running     1          108m
+
