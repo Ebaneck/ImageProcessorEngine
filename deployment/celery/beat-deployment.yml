@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-beat
+  namespace: imageprocessor
+  labels:
+    deployment: celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: celery-beat
+  template:
+    metadata:
+      labels:
+        pod: celery-beat
+    spec:
+      containers:
+        - name: celery-beat
+          image: claudeforlife/imageprocessor:latest
+          workingDir: /opt/app/imageProcessor/
+          command: [ "bash", "-c", "celery -A imageProcessor beat -l debug"]
+          env:
+            - name: SECRET_KEY
+              value: "my-secret-key"
+
+            - name: POSTGRES_NAME
+              value: postgres
+
+            - name: REDIS_SERVICE_HOST
+              value: redis
+  
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password

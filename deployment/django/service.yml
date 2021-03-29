@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: kubernetes-django-service
+  namespace: imageprocessor
+spec:
+  selector:
+    app: django-container
+  ports:
+  - protocol: TCP
+    port: 8020
+    targetPort: 8020
+  type: NodePort

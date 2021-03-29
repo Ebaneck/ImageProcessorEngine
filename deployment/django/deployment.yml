@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  namespace: imageprocessor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-container
+  template:
+    metadata:
+      labels:
+        app: django-container
+    spec:
+      containers:
+        - name: backend
+          imagePullPolicy: Always
+          image: claudeforlife/imageprocessor:v2
+          # command: ['python', 'manage.py', 'collectstatic']
+          # livenessProbe:
+          #   httpGet:
+          #     path: /healthcheck
+          #     port: 8020
+          # readinessProbe:
+          #   httpGet:
+          #     path: /readiness
+          #     port: 8020
+          #   initialDelaySeconds: 10
+          #   timeoutSeconds: 5
+          ports:
+          - containerPort: 8020
+          env:
+            - name: SECRET_KEY
+              value: "my-secret-key"
+
+            - name: POSTGRES_NAME
+              value: postgres
+
+            # - name: DJANGO_SUPERUSER_USERNAME
+            #   value: admin
+
+            # - name: DJANGO_SUPERUSER_PASSWORD
+            #   value: password #make this info a secret
+
+            # - name: DJANGO_SUPERUSER_EMAIL
+            #   value: admin@example.com
+
+            - name: REDIS_SERVICE_HOST
+              value: redis
+                        
+            # - name: DEBUG
+            #   value: False
+
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
+
+          volumeMounts:
+            - name: postgres-volume-mount
+              mountPath: /var/lib/busybox
+
+      volumes:
+        - name: postgres-volume-mount
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+
