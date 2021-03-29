@@ -1,0 +1,38 @@
+{% extends 'imageProcessorApp/base.html' %}
+
+{% block content %}
+<section>
+  {% if messages %}
+  {% for message in messages %}
+  <article class="message is-success">
+    <div class="message-header">
+      <p>Nice!</p>
+    </div>
+    <div class="message-body">
+      New image has been uploaded successfully.
+    </div>
+  </article>
+  {% endfor %}
+  {% endif %}
+  <div class="file is-warning is-boxed is-vcentered is-centered">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <!-- <label class="file-label">
+      <input class="file-input" type="file" name="resume">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-cloud-upload-alt"></i>
+        </span>
+        <span class="file-label">
+          Warning file…
+        </span>
+      </span>
+    </label> -->
+    <button type="submit">Upload</button>
+  </form>
+  </div>
+</section>
+
+
+{% endblock %}

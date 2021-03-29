@@ -1,0 +1,53 @@
+{% extends 'imageProcessorApp/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="section">
+        <table class="table is-hoverable is-fullwidth">
+            <thead>
+            <tr>
+                <th>Image Link</th>
+                <th>Upload timestamp(UTC)</th>
+                <th>Verified</th>
+                <th>Rejected</th>
+
+            </tr>
+            </thead>
+            {% for item in image_data %}
+                <tr>
+                    <td>
+                        <figure class="image is-128x128">
+                            <img src="{{ item.photo.url }}">
+                          </figure>
+                        <!-- {{ item.photo }} -->
+                    </td>   
+                    <td>
+                        {{ item.upload_timestamp }}
+                    </td>
+                    <td>
+                        {% if item.image_verified == True %}
+                            <i class="far fa-check-circle"></i> {{ item.image_verified }}
+                        {% else %}
+                            {{ item.image_verified }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.image_rejected == none %}
+                            Unknown
+                        {% else %}
+                            {{ item.image_rejected }}
+                        {% endif %}
+                    </td>
+                    {% empty %}
+                        <article class="message is-warning">
+                            <div class="message-header">
+                                <p>Hmmmm!</p>
+                            </div>
+                            <div class="message-body is-danger">
+                                We didn't find any information uploaded. Please follow this <a href="{% url 'image_upload' %}">link</a> to upload data...
+                            </div>
+                        </article>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+{% endblock %}
