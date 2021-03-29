@@ -139,6 +139,15 @@ To see health status of the Django stack components, visit this url,
 Django admin default login credentials are as follows:
 `username: admin` `password: password`
 
+Note:
+
+We use asynchronous tasks to add watermarks to each accepted or rejected
+image. In a resource limited setup, the celery task might take some time
+to process and add watermarks to the images in the background.
+
+If your setup is resource limited, then in the `image list tab`, the new 
+watermarked images will not display immediately after selection.
+
 Screenshots
 ===========
 
