@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-db-import
+  namespace: imageprocessor
+spec:
+  template:
+    spec:
+      containers:
+        - name: django-db-import
+          image: claudeforlife/imageprocessor:latest
+          workingDir: /opt/app/imageProcessor/
+          command: ['python', 'manage.py', 'loaddata', 'datadump.json']
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
+
+            - name: POSTGRES_NAME
+              value: postgres
+
+            - name: REDIS_SERVICE_HOST
+              value: redis
+                        
+      restartPolicy: Never
+  backoffLimit: 5

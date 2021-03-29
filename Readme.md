@@ -99,6 +99,7 @@ In the deployment directory, you will find Deployment manifests for each of the 
     In the deployment django directory, run the following commands in order:
     - `kubectl apply -f deployment/django/service.yml`
     - `kubectl apply -f deployment/django/migration.yml`
+    - `kubectl apply -f deployment/django/import.yml`
     - `kubectl apply -f deployment/django/deployment.yml`
 
 
