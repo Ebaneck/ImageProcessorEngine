@@ -47,7 +47,7 @@ def reject_pic(request, photo_id):
     # call a celery task that runs in background
     # task should be async to prevent view from blocking
     add_waterMark.apply_async(expires=datetime.datetime.now() + datetime.timedelta(
-        minutes=5), countdown=10, kwargs={"photo_id": photo_id, "selected_flag": "rejected"})
+        minutes=5), countdown=10, args=[photo_id, "rejected"])
     messages.success(
         request, ('Image with ID: {} was rejected successfully'.format(int(photo_id))))
     return JsonResponse({"sucess": "sucessfully"}, status=200)
@@ -67,7 +67,7 @@ def accept_pic(request, photo_id):
     Photo.image_rejected = False
     Photo.save()
     add_waterMark.apply_async(expires=datetime.datetime.now() + datetime.timedelta(
-        minutes=5), countdown=10, kwargs={"photo_id": photo_id, "selected_flag": "accepted"})
+        minutes=5), countdown=10, args=[photo_id, "accepted"])
     messages.success(
         request, ('Image with ID: {} was accepted successfully'.format(int(photo_id))))
     return JsonResponse({"sucess": "sucessfully"}, status=200)
