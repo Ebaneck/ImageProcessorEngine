@@ -4,4 +4,4 @@ if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; 
     (cd /opt/app/imageProcessor; python manage.py createsuperuser --no-input)
 fi
 (cd /opt/app/imageProcessor; gunicorn imageProcessor.wsgi --user www-data --bind 0.0.0.0:8010 --workers 3) &
-nginx -g "daemon off;" & 
+nginx -g "daemon off;"

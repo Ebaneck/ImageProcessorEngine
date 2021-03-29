@@ -94,7 +94,7 @@ In the deployment directory, you will find Deployment manifests for each of the 
     In the deployment celery directory, run the following commands:
     - `kubectl apply -f deployment/celery` -->
 
-5. Deploy Django backend
+4. Deploy Django backend
 
     In the deployment django directory, run the following commands in order:
     - `kubectl apply -f deployment/django/service.yml`
