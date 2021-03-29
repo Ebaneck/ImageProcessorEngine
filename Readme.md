@@ -89,10 +89,10 @@ In the deployment directory, you will find Deployment manifests for each of the 
     In the deployment postgres directory, run the following command:
     - `kubectl apply -f deployment/postgres`
 
-4. Deploy celery
+<!-- 4. Deploy celery
 
     In the deployment celery directory, run the following commands:
-    - `kubectl apply -f deployment/celery`
+    - `kubectl apply -f deployment/celery` -->
 
 5. Deploy Django backend
 
@@ -118,7 +118,7 @@ Test
 ====
 This mini-project includes an example test-suite for some models and views.
 
-To run test, in a virtual environement with all dependencies installed,
+To run test, in a virtual environment with all dependencies installed,
 execute the following command:
 
 `python manage.py test`
@@ -130,7 +130,7 @@ To access the deployed application, use the following command:
 
 `minikube service --url kubernetes-django-service -n imageprocessor`
 
-The above command should expose our webapplication using a Nodeport.
+The above command should expose our web-application using a Nodeport.
 Obtain the URL and place it in a browser page.
 
 To see health status of the Django stack components, visit this url,

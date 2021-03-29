@@ -17,7 +17,8 @@ spec:
         - name: backend
           imagePullPolicy: Always
           image: claudeforlife/imageprocessor:latest
-          # command: ['python', 'manage.py', 'collectstatic']
+          workingDir: /opt/app/imageProcessor/
+          command: ["bash", "-c", "celery -A imageProcessor worker -l debug"]
           # livenessProbe:
           #   httpGet:
           #     path: /healthcheck
