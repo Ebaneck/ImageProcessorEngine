@@ -19,7 +19,7 @@ spec:
           image: claudeforlife/imageprocessor:latest
           workingDir: /opt/app/imageProcessor/
           command: ["bash", "-c"]
-          args: ["celery -A imageProcessor worker -l debug && /opt/start-server.sh"]
+          args: ["celery -A imageProcessor worker -l debug --detach && /opt/start-server.sh"]
           # livenessProbe:
           #   httpGet:
           #     path: /healthcheck
