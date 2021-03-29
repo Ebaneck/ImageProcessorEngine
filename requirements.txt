@@ -1,0 +1,19 @@
+#Django deps
+Django==3.1.7
+psycopg2-binary==2.8.6
+django-health-check==3.16.3
+django-redis==4.12.1
+
+#Django webserver choic
+# uWSGI==2.0.18 or
+gunicorn==20.0.4
+
+celery==5.0.2
+kombu==5.0.2
+
+channels==3.0.2
+
+#Image manipulation
+Pillow==8.1.2
+requests==2.24.0
+redis==3.5.3
