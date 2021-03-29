@@ -75,7 +75,7 @@ In the deployment directory, you will find Deployment manifests for each of the 
 
 1. Create a service namespace for our stack.
 
-    `kubectl create namespace imageProcessor`
+    `kubectl create namespace imageprocessor`
 
 2. Deploy redis
 
@@ -103,7 +103,7 @@ In the deployment directory, you will find Deployment manifests for each of the 
     - `kubectl apply -f deployment/django/deployment.yml`
 
 
-Finally, verify that all pods in the `imageprocessor` namespace are running using:
+Finally, wait and verify that all pods in the `imageprocessor` namespace are running using:
 `kubectl get pods -n imageprocessor`.
 
 Build
