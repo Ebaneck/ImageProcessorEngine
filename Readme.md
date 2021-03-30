@@ -58,7 +58,7 @@ Requirements
 
 - Install minikube on a Linux based system following these [steps](https://minikube.sigs.k8s.io/docs/start/)
 
-- From the terminal, start the clutser using `minikube start`
+- From the terminal, start the cluster using `minikube start`
 
 - Ensure `kubectl` is installed, if not, follow this [manual](https://v1-18.docs.kubernetes.io/docs/tasks/tools/install-kubectl/) to install it.
 
